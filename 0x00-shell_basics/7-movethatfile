@@ -1,2 +1,2 @@
 #!/bin/bash
-mv ~/tmp/betty.txt ~/tmp/holberton/
+mv /tmp/betty /tmp/holberton/
