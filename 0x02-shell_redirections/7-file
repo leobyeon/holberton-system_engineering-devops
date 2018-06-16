@@ -1,2 +1,2 @@
 #!/bin/bash
-touch '\*\\'\''"Holberton School"\'\''\\*$\?\*\*\*\*\*:)'
+echo "Hello World \n" > '\*\\'\''"Holberton School"\'\''\\*$\?\*\*\*\*\*:)'
