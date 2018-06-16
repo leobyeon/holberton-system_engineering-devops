@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -Rlaf "*.gif" | sort -n | cut -d "." -f 1
