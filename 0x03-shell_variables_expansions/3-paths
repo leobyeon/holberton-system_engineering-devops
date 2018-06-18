@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $PATH | cut -d ':' -f 1 | printf '%s\n' | wc -l
