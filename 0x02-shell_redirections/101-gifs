@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Rlaf "*.gif" | sort -n | cut -d "." -f 1
+find -type f -iname "*.gif" -printf "%f\n" | rev | cut -d "." -f 2 | rev | sort -Vf
