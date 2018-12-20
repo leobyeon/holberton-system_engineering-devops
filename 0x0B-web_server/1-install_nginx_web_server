@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # configures a new Ubuntu machine to respect requirements
-# as laid out in #1
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
