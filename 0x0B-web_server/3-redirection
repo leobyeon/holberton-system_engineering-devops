@@ -3,6 +3,5 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Holberton School" > /usr/share/nginx/html/index.html
-replacer="location /redirect_me {\nrewrite ^/(.*)$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n}\n"
-sudo sed -i "/listen 80 default_server/ a \\t$replacer" /etc/nginx/sites-available/default
+sudo sed -i "/listen 80 default_server/ a \\tlocation /redirect_me {\n\t\treturn 301 https://http.cat/;\n}\n" /etc/nginx/sites-available/default
 sudo service nginx restart
