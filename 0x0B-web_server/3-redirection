@@ -3,5 +3,5 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Holberton School" > /usr/share/nginx/html/index.html
-sudo sed -i "/listen 80 default_server/ a \\tlocation /redirect_me {\n\t\treturn 301 https://http.cat/;\n}\n" /etc/nginx/sites-available/default
+sudo sed -i "30i\\tlocation \/redirect_me {\n\t\treturn 301 https://http.cat/;\n}\n" /etc/nginx/sites-available/default
 sudo service nginx restart
