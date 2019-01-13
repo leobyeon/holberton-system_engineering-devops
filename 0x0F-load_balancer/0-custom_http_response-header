@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# configures web-02 to be identical to web-01
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
+sudo touch /usr/share/nginx/html/404.html
+sudo sed -i 's/#error_page 404/error_page 404/' /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
+sudo sed -i "30i\\\tlocation \/redirect_me {\n\\\t\\\treturn 301 https://http.cat/;\n}\n" /etc/nginx/sites-available/default
+sudo sed -i "/http {/ a \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
+sudo service nginx start
