@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# configures subdomain www to point to load-balancer IP
+
+func () {
+	DOM="$2.$1"
+	REC="$(dig $DOM | grep -A2 'ANSWER SECTION:' | grep -A1 'IN' | awk '{ print $4 }')"
+	DEST="$(dig $DOM | grep -A2 'ANSWER SECTION:' | grep -A1 'IN' | awk '{ print $5 }')"
+	echo "The subdomain $2 is a $REC record and points to $DEST"
+}
+
+if [ "$#" -eq 1 ]; then
+	func $1 'www'
+	func $1 'lb-01'
+	func $1 'web-01'
+	func $1 'web-02'
+elif [ "$#" -eq 2 ]; then
+	func $1 $2
+fi
