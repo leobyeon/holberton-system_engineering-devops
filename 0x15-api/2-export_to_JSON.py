@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # exports data in JSON format
-import requests
 import json
+import requests
 from sys import argv
 
 
