@@ -5,7 +5,7 @@ import csv
 from sys import argv
 
 
-if __name__ == "__main__":
+def one():
     url = 'https://jsonplaceholder.typicode.com'
     n = requests.get('{}/users/{}'.format(url, argv[1])).json()
     uid = int(argv[1])
@@ -21,3 +21,6 @@ if __name__ == "__main__":
         writer = csv.DictWriter(
                 f, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         writer.writerows(objs)
+
+if __name__ == "__main__":
+    one()
