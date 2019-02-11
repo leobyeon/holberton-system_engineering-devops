@@ -5,7 +5,7 @@ import requests
 from sys import argv
 
 
-if __name__ == "__main__":
+def three():
     url = 'https://jsonplaceholder.typicode.com'
     all_u = requests.get('{}/users'.format(url)).json()
     form = {}
@@ -21,3 +21,6 @@ if __name__ == "__main__":
         form[str(uid)] = objs
     with open('todo_all_employees.json', mode='w') as f:
         json.dump(form, f)
+
+if __name__ == "__main__":
+    three()
