@@ -6,24 +6,12 @@ from sys import argv
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com'
-    r = requests.get('{}/todos'.format(url))
-    try:
-        res = r.json()
-    except:
-        print("Not a valid JSON")
-
-    tasks = []
-    completed = []
-    for task in res:
-        if task["userId"] == int(argv[1]):
-            tasks.append(task)
-    done = 0
-    total = 0
-    for task in tasks:
-        total += 1
-        if task["completed"]:
-            done += 1
-            completed.append(task)
+    all_t = requests.get('{}/todos'.format(url)).json()
+    uid = int(argv[1])
+    tasks = [t for t in all_t if t['userId'] == uid]
+    completed = [c for c in tasks if c['completed'] is True]
+    total = len(tasks)
+    done = len(completed)
 
     u = requests.get('{}/users/{}'.format(url, argv[1]))
     try:
@@ -32,6 +20,6 @@ if __name__ == "__main__":
             print("Employee {} is done with tasks({}/{}):".format(
                 user["name"], done, total))
             for task in completed:
-                print("\t{}".format(task["title"]))
+                print("\t {}".format(task["title"]))
     except:
         print("Not a valid JSON")
