@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-# returns the number of subscribers to a subreddit
-import requests
+""" returns the number of subscribers to a subreddit """
 
 
 def number_of_subscribers(subreddit):
     """ grabs the number of total subscribers """
+    import requests
+
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     headers = {
             'user-agent': 'my user agent 1.0',
