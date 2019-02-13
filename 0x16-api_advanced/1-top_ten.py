@@ -18,6 +18,6 @@ def top_ten(subreddit):
             }
     r = requests.get(url, allow_redirects=False, headers=headers)
     if r.status_code != requests.codes.ok:
-        return (None)
+        return ('None')
     listing = r.json().get('data').get('children')
     return ([print(post.get('data').get('title')) for post in listing[:10]])
