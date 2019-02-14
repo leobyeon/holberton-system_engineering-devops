@@ -11,21 +11,21 @@ def recurse(subreddit, hot_list=[], after=None):
     return a list of titles of all hot article
     """
     headers = {
-            'user-agent': 'my user agent 1.0',
-            'content-type': 'application/json'
+            'user-agent': 'my user'
             }
     if after:
-        url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(
+        url = 'https://api.reddit.com/r/{}/hot?after={}'.format(
                 subreddit, after)
     else:
-        url = 'https://www.reddit.com/r/{}/hot'.format(subreddit)
-    try:
-        r = requests.get(url, allow_redirects=False, headers=headers).json()
-        after = r.get('data').get('after')
-        posts = r.get('data').get('children')
-        hot_list = [post.get('data').get('title') for post in posts]
+        url = 'https://api.reddit.com/r/{}/hot'.format(subreddit)
+    
+        r = requests.get(url, headers=headers)
+        if r.status_code != 200:
+            return (None)
+        after = r.json().get('after')
+        posts = r.json().get('data').get('children')
+        for post in posts:
+            hot_list.append(post.get('data').get('title'))
         if not after:
             return (hot_list)
         return (recurse(subreddit, hot_list, after))
-    except:
-        return (None)
